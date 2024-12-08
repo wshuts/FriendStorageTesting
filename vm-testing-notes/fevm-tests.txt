@@ -1,0 +1,17 @@
+FriendEditViewModelTests:
+  Setup: Create FEVM; 3 dependencies; 3 mock objects passed in to constructor; DP, EA, MDS; additionally, 2 events are mocked;
+  Facts: (19) See below
+
+[ShouldLoadFriend]:
+  Action: FEVM.Load(friendId)
+  Assert/Verify: Friend property not null; Friend has correct Id; Verify call [once] to DP.GetFriendById(friendId);
+
+  Commentary: straightforward spec for Load method; make data provider call; set Friend property correctly;
+  
+  Distinction: Load is actually adapting types from Friend to FriendWrapper;
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary: 

@@ -1,0 +1,28 @@
+NavigationItemViewModelTests:
+  Setup: Create VM under test
+    requires initial data, dependency on IEventAggregator=>Mocked Object
+  Facts: ShouldPublish, ShouldRaise
+
+ShouldPublish:
+  How?
+  Action: Command.Execute
+  Verify: using local event Mock, Publish with payload oneTime
+
+  Details:
+  EA is mocked
+  GetEvent returns a mocked event
+  Call to Publish is verified on that mocked event
+
+  Distinction:
+  At runtime -
+  The "real" EA returns the "real" event
+  NIVM calls Publish on the "real" event
+
+  Commentary:
+  The test is confirming: access to EA, the Publish call on correct event with correct payload & called only once
+
+ShouldRaise
+  Action: write to DisplayMember
+  Verify: change notification
+
+  Commentary: uses Extensions to confirm NPC implemented and PC event is fired using correct property name.

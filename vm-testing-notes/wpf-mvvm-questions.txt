@@ -1,0 +1,72 @@
+topic:
+unit testing view models
+
+questions:
+how are mocks used in testing?
+
+Method setups: indicate that those methods Are Called by the "code-under-test"; behaviors will be "real" vs. "mock" (runtime vs. test)
+
+Mocks specify the behaviors of collaborators. Use Returns & Callbacks of method setups.
+
+how are dependencies eliminated? which dependencies?
+
+other questions:
+how is autofac used?
+how are pubsub events used?
+how are wrappers used?
+
+---
+how are mocks used in testing?
+
+NavigationItemViewModelTests:
+  Setup: Create VM under test
+    requires initial data, dependency on IEventAggregator=>Mocked Object
+  Facts: ShouldPublish, ShouldRaise
+
+ShouldPublish:
+  How?
+  Action: Command.Execute
+  Verify: using local event Mock, Publish with payload oneTime
+
+  Details:
+  EA is mocked
+  GetEvent returns a mocked event
+  Call to Publish is verified on that mocked event
+
+  Distinction:
+  At runtime -
+  The "real" EA returns the "real" event
+  NIVM calls Publish on the "real" event
+
+  Commentary:
+  The test is confirming: access to EA, the Publish call on correct event with correct payload & called only once
+
+ShouldRaise
+  Action: write to DisplayMember, verify change notification
+
+  Commentary: uses Extensions to confirm NPC implemented and PC event is fired using correct property name.
+
+---
+FriendStorageTesting Notes:
+
+NIVM: NVM maintains OC<NIVM>
+  Load, OnFriendSaved Create and Add the NIVM to the OC<NIVM>
+  Confusion: no use of Autofac, no Wrapper, not passing Creator Function into the parent NVM class???
+
+NotifyPropertyChangedExtensions
+  IsPropertyChangedFired
+    verifies that property changed event is fired during execution of a specified Action
+Example Actions: Write to a property, Load(), etc.
+
+FriendWrapper
+  In App: FEVM Load() creates the wrapper and sets the property
+  In MVMT: has dependency on CreateFriendEditViewModel
+    creates FEVM mock, sets up expected Load() call, add to list
+    return FEVM mock
+    -> setup for Load():
+      uses Callback with Load data, sets up Friend property to return
+      {new Wrapper(new Friend(data))}
+
+No wonder that I was confused! This Wrapper does not rely on Autofac.
+FEVM does have dependency on FW which depends on F
+For the learning project, only FEVM lives in the Autofac container

@@ -1,0 +1,15 @@
+NavigationViewModelTests:
+  Setup: 
+  Facts: 
+
+[Fact]:
+  Action: 
+  Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Verify: 
+
+  Commentary: 

@@ -1,0 +1,34 @@
+NavigationViewModelTests:
+  Setup: Create NVM;(2) dependencies; both mocked; NDPM, EAM; Real events are created (to allow NVM response to these events)
+  Facts: ShouldLoadFriends, ShouldLoadFriendsOnlyOnce, ShouldUpdateNavigationItemWhenFriendIsSaved, ShouldAddNavigationItemWhenAddedFriendIsSaved, ShouldRemoveNavigationItemWhenFriendIsDeleted
+
+[ShouldLoadFriends]:
+  Action: NVM.Load
+  Assert: [OC]NIVMs count; entries not null; properties correctly set
+
+  Commentary: N/A
+
+[ShouldLoadFriendsOnlyOnce]:
+  Action: NVM.Load; NVM.Load;
+  Assert: [OC]NIVMs count;
+
+  Commentary: Does Load get called more than once? Why is this safeguard required?
+
+[ShouldUpdateNavigationItemWhen{Existing}FriendIsSaved{WithChanges}]:
+  Action: friendSavedEvent.Publish
+  Assert: DisplayMember property is set correctly for the desired NIVM
+
+  Commentary: The event publishes with a "Friend" payload; NVM.Load is used to "arrange" the test; test assumes first NIVM is "saved" with changes; First NI is retrieved; Id is payload for published event; NI DisplayMember is verified;
+
+[ShouldAddNavigationItemWhenAddedFriendIsSaved]:
+  Action: friendSavedEvent.Publish
+  Assert: verify [OC]NIVMs count; retrieve NIVM by Id; verify not null; verify DisplayMember;
+
+  Commentary: The event publishes with a "Friend" payload; NVM.Load is used to "arrange" the test; new Id is published in event payload;
+
+[ShouldRemoveNavigationItemWhenFriendIsDeleted]:
+  Action: friendDeletedEvent.Publish
+  Assert: [OC]NIVMs.Count reduced by 1, remaining NIVM.Id not equal to deletedId
+
+  Commentary: published event "triggers" NVM behavior; Asserts check state after event is published; check that correct NIVM is deleted from observable collection of NIVMs.
+

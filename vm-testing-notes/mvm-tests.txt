@@ -1,0 +1,51 @@
+MainViewModelTests:
+  Setup: Create MVM; dependencies: NVM, EA, FEVM Creation Method;
+    Create (2) events; Create list of FEVM mocks;
+  Mocks: NVM, EA
+  FEVM Creation Method: When called during the test - creates FEVM mock; setup FEVMM.Load; that setup also includes a Callback (Load & Callback => same args); adds FEVMM to List; returns the FEVM mock;
+  Callback: sets up the Friend property read; Returns a new FriendWrapper of a new Friend with the correct Id;
+  Facts: (7) See below
+
+[ShouldCallTheLoadMethodOfTheNavigationViewModel]:
+  Action: MVM.Load
+  Verify: NVM.Load called one time;
+
+  Commentary: MVM has dependency on NVM; Mock Object passed in to the constructor; MVM method calls NVM method;
+
+[ShouldAddFriendEditViewModelAndLoadAndSelectIt]:
+  Action: openFriendEditViewEvent.Publish(friendId)
+  Assert/Verify: check [OC]FEVMs count; check that selectedFEVM is set correctly; verify FEVM.Load is called one time;
+
+  Commentary: [opinion]Add, Load, & Select: a lot of behavior for one test; test requires MVM response to "real" published event;
+  Note: CreateFriendEditViewModel dependency is crucial to this test;
+
+[ShouldAddFriendEditViewModelAndLoadItWithIdNullAndSelectIt]:
+  Action: MVM.AddFriendCommand.Execute
+  Assert/Verify: check [OC]FEVMs count; check that selectedFEVM is set correctly; verify FEVM.Load is called one time with Id=null;
+
+  Commentary: very similar to previous test; difference is arg passed to FEVM.Load
+  
+
+[ShouldAddFriendEditViewModelsOnlyOnce]:
+  Action: several calls to openFriendEditViewEvent.Publish(friendId) with some repeated Ids
+  Assert: check [OC]FEVMs count;
+
+  Commentary: one entry expected for each unique Id; Will there be repeated openFEV requests?
+
+[ShouldRaisePropertyChangedEventForSelectedFriendEditViewModel]:
+  Action: SelectedFEVM set to FEVM mock.
+  Assert: PCE has been "fired".
+
+  Commentary: writing to SelectedFEVM must change the value. Initially, this property is null.
+
+[ShouldRemoveFriendEditViewModelOnCloseFriendTabCommand]:
+  Action: MVM.CloseFriendTabCommand.Execute
+  Assert: check [OC]FEVMs count;
+
+  Commentary: The command passes the FEVM to the handler.
+
+[ShouldRemoveFriendEditViewModelOnFriendDeletedEvent]:
+  Action: friendDeletedEvent.Publish(deletedFriendId)
+  Assert: check [OC]FEVMs count; check that all remaining FEVMs have different Id.
+
+  Commentary: requires correct response to openFriendEditViewEvent for arranging the test.
