@@ -10,7 +10,13 @@ FriendEditViewModelTests:
   
   Distinction: Load is actually adapting types from Friend to FriendWrapper;
 
-[Fact]:
+[ShouldRaisePropertyChangedEventForFriend]:
+  Action: FEVM.Load(friendId)
+  Assert/Verify: fired is true;
+
+  Commentary: "fired" used interchangeably with "raised"; NPC extension method used to test this event firing; assumes Load changes the Friend property;
+  
+  [Fact]:
   Action: 
   Assert/Verify: 
 
