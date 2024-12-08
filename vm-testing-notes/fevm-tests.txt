@@ -7,7 +7,7 @@ FriendEditViewModelTests:
   Assert/Verify: Friend property not null; Friend has correct Id; Verify call [once] to DP.GetFriendById(friendId);
 
   Commentary: straightforward spec for Load method; make data provider call; set Friend property correctly;
-  
+
   Distinction: Load is actually adapting types from Friend to FriendWrapper;
 
 [ShouldRaisePropertyChangedEventForFriend]:
@@ -15,9 +15,15 @@ FriendEditViewModelTests:
   Assert/Verify: fired is true;
 
   Commentary: "fired" used interchangeably with "raised"; NPC extension method used to test this event firing; assumes Load changes the Friend property;
-  
-  [Fact]:
+
+[ShouldDisableSaveCommandWhenFriendIsLoaded]:
+  Action: FEVM.Load(friendId)
+  Assert/Verify: FEVM.SaveCommand.CanExecute is false;
+
+  Commentary: Load uses ICommand functionality for SaveCommand of FEVM; SaveCommand event handlers are initialized in FEVM.
+
+[Fact]:
   Action: 
   Assert/Verify: 
 
-  Commentary: 
+  Commentary:
