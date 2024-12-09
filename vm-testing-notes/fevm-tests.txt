@@ -4,7 +4,7 @@ FriendEditViewModelTests:
 
 [ShouldLoadFriend]:
   Action: FEVM.Load(friendId)
-  Assert/Verify: Friend property not null; Friend has correct Id; Verify call [once] to DP.GetFriendById(friendId);
+  Assert/Verify: Friend property not null; Friend has correct Id; Verify one call to DP.GetFriendById(friendId);
 
   Commentary: straightforward spec for Load method; make data provider call; set Friend property correctly;
 
@@ -21,6 +21,97 @@ FriendEditViewModelTests:
   Assert/Verify: FEVM.SaveCommand.CanExecute is false;
 
   Commentary: Load uses ICommand functionality for SaveCommand of FEVM; SaveCommand event handlers are initialized in FEVM.
+
+[ShouldEnableSaveCommandWhenFriendIsChanged]:
+  Action: FEVM.Friend.FirstName = "Changed";
+  Assert/Verify: FEVM.SaveCommand.CanExecute is true;
+
+  Commentary: In test setup is FEVM.Load(friendId);
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
+
+[Fact]:
+  Action: 
+  Assert/Verify: 
+
+  Commentary:
 
 [Fact]:
   Action: 
