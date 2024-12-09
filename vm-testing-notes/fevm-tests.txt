@@ -28,11 +28,11 @@ FriendEditViewModelTests:
 
   Commentary: In test setup is FEVM.Load(friendId);
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldDisableSaveCommandWithoutLoad]:
+  Action: None.
+  Assert/Verify: FEVM.SaveCommand.CanExecute is false;
 
-  Commentary:
+  Commentary: No action; test checks state after creation/initialization of FEVM;
 
 [Fact]:
   Action: 
