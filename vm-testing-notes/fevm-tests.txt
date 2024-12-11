@@ -38,7 +38,7 @@ FriendEditViewModelTests:
   Action: FEVM.Friend.FirstName = "Changed";
   Assert/Verify: fired = true;
 
-  Commentary: test setup: FEVM.Load(friendId); fired initialized to false; subscribed to event; handler sets fired = true (if invoked)
+  Commentary: test setup: FEVM.Load(friendId); fired initialized to false; subscribed to event; handler sets fired = true (if invoked); Possibility to extend ICommand to support test verification - similar to NPC extension
 
 [Fact]:
   Action: 
