@@ -46,11 +46,11 @@ FriendEditViewModelTests:
 
   Commentary: now using ICommand extension method IsCanExecuteChangedFired
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldRaiseCanExecuteChangedForDeleteCommandAfterLoad]:
+  Action: FEVM.Load(friendId)
+  Assert/Verify: fired = true;
 
-  Commentary:
+  Commentary: same test as above; for different command: DeleteCommand
 
 [Fact]:
   Action: 
