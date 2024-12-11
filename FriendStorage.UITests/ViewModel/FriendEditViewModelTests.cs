@@ -103,9 +103,11 @@ namespace FriendStorage.UITests.ViewModel
         [Fact]
         public void ShouldRaiseCanExecuteChangedForSaveCommandAfterLoad()
         {
-            var fired = false;
-            _viewModel.SaveCommand.CanExecuteChanged += (s, e) => fired = true;
-            _viewModel.Load(_friendId);
+            var fired = _viewModel.SaveCommand.IsCanExecuteChangedFired(() =>
+            {
+                _viewModel.Load(_friendId);
+            });
+
             Assert.True(fired);
         }
 
