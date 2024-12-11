@@ -114,9 +114,11 @@ namespace FriendStorage.UITests.ViewModel
         [Fact]
         public void ShouldRaiseCanExecuteChangedForDeleteCommandAfterLoad()
         {
-            var fired = false;
-            _viewModel.DeleteCommand.CanExecuteChanged += (s, e) => fired = true;
-            _viewModel.Load(_friendId);
+            var fired = _viewModel.DeleteCommand.IsCanExecuteChangedFired(() =>
+            {
+                _viewModel.Load(_friendId);
+            });
+
             Assert.True(fired);
         }
 
