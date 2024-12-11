@@ -40,11 +40,11 @@ FriendEditViewModelTests:
 
   Commentary: test setup: FEVM.Load(friendId); fired initialized to false; subscribed to event; handler sets fired = true (if invoked); Possibility to extend ICommand to support test verification - similar to NPC extension
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldRaiseCanExecuteChangedForSaveCommandAfterLoad]:
+  Action: FEVM.Load(friendId)
+  Assert/Verify: fired = true;
 
-  Commentary:
+  Commentary: now using ICommand extension method IsCanExecuteChangedFired
 
 [Fact]:
   Action: 
