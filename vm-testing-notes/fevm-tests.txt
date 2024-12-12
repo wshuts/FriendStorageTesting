@@ -52,11 +52,11 @@ FriendEditViewModelTests:
 
   Commentary: same test as above; for different command: DeleteCommand
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldRaiseCanExecuteChangedForDeleteCommandWhenAcceptingChanges]:
+  Action: FEVM.Friend.AcceptChanges()
+  Assert/Verify: fired = true;
 
-  Commentary:
+  Commentary: strange design; Friend.AcceptChanges() is the trigger; FEVM should raise the correct event; side bar: strange implementation by using FriendPropertyChanged handler;
 
 [Fact]:
   Action: 
