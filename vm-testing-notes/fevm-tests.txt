@@ -58,11 +58,11 @@ FriendEditViewModelTests:
 
   Commentary: strange design; Friend.AcceptChanges() is the trigger; FEVM should raise the correct event; side bar: strange implementation by using FriendPropertyChanged handler;
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldCallSaveMethodOfDataProviderWhenSaveCommandIsExecuted]:
+  Action: FEVM.SaveCommand.Execute(null);
+  Assert/Verify: DPM.Verify(dp => dp.SaveFriend(FEVM.Friend.Model), Times.Once);
 
-  Commentary:
+  Commentary: test uses verify to specify collaborator method call;
 
 [Fact]:
   Action: 
