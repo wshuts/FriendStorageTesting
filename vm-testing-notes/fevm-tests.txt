@@ -64,11 +64,11 @@ FriendEditViewModelTests:
 
   Commentary: test uses verify to specify collaborator method call;
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldAcceptChangesWhenSaveCommandIsExecuted]:
+  Action: FEVM.SaveCommand.Execute(null);
+  Assert/Verify: FEVM.Friend.IsChanged = false;
 
-  Commentary:
+  Commentary: Review: In this context, "Friend" is a Friend Wrapper; It wraps Friend, implements "NPC", and tracks the "IsChanged" state;
 
 [Fact]:
   Action: 
