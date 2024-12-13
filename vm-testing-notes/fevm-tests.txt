@@ -76,11 +76,11 @@ FriendEditViewModelTests:
 
   Commentary: test verifies correct event is published one time;
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldCreateNewFriendWhenNullIsPassedToLoadMethod]:
+  Action: FEVM.Load(null);
+  Assert/Verify: Friend is created with id=0, isDeveloper=false; other properties=null; verify GetFriendById is not called by DPM;
 
-  Commentary:
+  Commentary: Very strange test! Why does Load handle "creating a new friend"? Why is passing null to Load triggering this behavior?
 
 [Fact]:
   Action: 
