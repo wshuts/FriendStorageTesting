@@ -1,5 +1,5 @@
 FriendEditViewModelTests:
-  Setup: Create FEVM; 3 dependencies; 3 mock objects passed in to constructor; DP, EA, MDS; additionally, 2 events are mocked;
+  Setup: Create FEVM; 3 dependencies; 3 mock objects passed in to constructor; DP, EA, MDS; additionally, 2 events are mocked; FSE,
   Facts: (19) See below
 
 [ShouldLoadFriend]:
@@ -20,7 +20,7 @@ FriendEditViewModelTests:
   Action: FEVM.Load(friendId)
   Assert/Verify: FEVM.SaveCommand.CanExecute is false;
 
-  Commentary: Load uses ICommand functionality for SaveCommand of FEVM; SaveCommand event handlers are initialized in FEVM.
+  Commentary: Load uses ICommand functionality for SaveCommand of FEVM; SaveCommand delegates are initialized in FEVM.
 
 [ShouldEnableSaveCommandWhenFriendIsChanged]:
   Action: FEVM.Friend.FirstName = "Changed";
@@ -70,11 +70,11 @@ FriendEditViewModelTests:
 
   Commentary: Review: In this context, "Friend" is a Friend Wrapper; It wraps Friend, implements "NPC", and tracks the "IsChanged" state;
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldPublishFriendSavedEventWhenSaveCommandIsExecuted]:
+  Action: FEVM.SaveCommand.Execute(null);
+  Assert/Verify: FSEM.Verify(e => e.Publish(FEVM.Friend.Model), Times.Once);
 
-  Commentary:
+  Commentary: test verifies correct event is published one time;
 
 [Fact]:
   Action: 
