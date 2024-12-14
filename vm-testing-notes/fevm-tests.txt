@@ -80,7 +80,7 @@ FriendEditViewModelTests:
   Action: FEVM.Load(null);
   Assert/Verify: Friend is created with id=0, isDeveloper=false; other properties=null; verify GetFriendById is not called by DPM;
 
-  Commentary: Very strange test! Why does Load handle "creating a new friend"? Why is passing null to Load triggering this behavior?
+  Commentary: Very strange test! Why does Load handle "creating a new friend"? Why is passing null to Load triggering this behavior? More to the story: Now that reference types can be null, the null case propagates null to Id; this triggers "create&load" functionality. I don't have to like it - but now "null" is a valid/required branching condition.
 
 [Fact]:
   Action: 
