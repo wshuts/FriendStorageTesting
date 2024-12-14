@@ -82,11 +82,11 @@ FriendEditViewModelTests:
 
   Commentary: Very strange test! Why does Load handle "creating a new friend"? Why is passing null to Load triggering this behavior? More to the story: Now that reference types can be null, the null case propagates null to Id; this triggers "create&load" functionality. I don't have to like it - but now "null" is a valid/required branching condition.
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldEnableDeleteCommandForExistingFriend]:
+  Action: FEVM.Load(friendId);
+  Assert/Verify: FEVM.DeleteCommand.CanExecute is true;
 
-  Commentary:
+  Commentary: Load method (for existing friendId) sets CanExecute to true; In context, "existing" means Friend != null; AND Id>0;
 
 [Fact]:
   Action: 
