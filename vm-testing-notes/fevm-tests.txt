@@ -88,11 +88,11 @@ FriendEditViewModelTests:
 
   Commentary: Load method (for existing friendId) sets CanExecute to true; In context, "existing" means Friend != null; AND Id>0;
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldDisableDeleteCommandForNewFriend]:
+  Action: FEVM.Load(null); FEVM.DeleteCommand.CanExecute;
+  Assert/Verify: FEVM.DeleteCommand.CanExecute is false;
 
-  Commentary:
+  Commentary: Implementation detail: Friend.Id = 0 indicates a "new" Friend. Note: CanExecute is called directly by the test; There are no subscribers to "CanExecuteChanged";
 
 [Fact]:
   Action: 
