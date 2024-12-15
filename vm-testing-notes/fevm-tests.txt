@@ -94,11 +94,11 @@ FriendEditViewModelTests:
 
   Commentary: Implementation detail: Friend.Id = 0 indicates a "new" Friend. Note: CanExecute is called directly by the test; There are no subscribers to "CanExecuteChanged";
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldDisableDeleteCommandWithoutLoad]:
+  Action: FEVM.DeleteCommand.CanExecute;
+  Assert/Verify: FEVM.DeleteCommand.CanExecute returns false;
 
-  Commentary:
+  Commentary: Implementation detail: Without Load, Friend will be null; This condition is checked within the command's CanExecute delegate; 
 
 [Fact]:
   Action: 
