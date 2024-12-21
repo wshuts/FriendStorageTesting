@@ -106,11 +106,11 @@ FriendEditViewModelTests:
 
   Commentary: Theory (in XUnit) is a parameterized test; The test runs once for each row of "parameter source data"; 1st parameter varies the Return specified by a Mock Setup (MDS.ShowYesNoDialog); 2nd parameter varies "TimesCalled" for (DP.DeleteFriend);
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldPublishFriendDeletedEventWhenDeleteCommandIsExecuted]:
+  Action: FEVM.DeleteCommand.Execute(null);
+  Assert/Verify: Verify FDE.Publish call with correct Id; Verify MDS.ShowYesNoDialog called once;
 
-  Commentary:
+  Commentary: Similar to previous test - except for verifying FDE.Publish instead of DP.DeleteFriend;
 
 [Fact]:
   Action: 
