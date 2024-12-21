@@ -1,0 +1,7 @@
+Generalizations:
+
+1. Setup a known state.
+2. Ask a collaborator to do something.
+3. Verify the resulting state.
+
+Examples: ShouldLoadFriend, 
