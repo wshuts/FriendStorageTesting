@@ -5,3 +5,4 @@ Generalizations:
 3. Verify the resulting state.
 
 Examples: ShouldLoadFriend, 
+
