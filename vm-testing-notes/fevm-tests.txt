@@ -100,11 +100,11 @@ FriendEditViewModelTests:
 
   Commentary: Implementation detail: Without Load, Friend will be null; This condition is checked within the command's CanExecute delegate; 
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldCallDeleteFriendWhenDeleteCommandIsExecuted]:
+  Action: FEVM.DeleteCommand.Execute(null);
+  Assert/Verify: Verify DP.DeleteFriend call with correct Id; Verify MDS.ShowYesNoDialog called once;
 
-  Commentary:
+  Commentary: Theory (in XUnit) is a parameterized test; The test runs once for each row of "parameter source data"; 1st parameter varies the Return specified by a Mock Setup (MDS.ShowYesNoDialog); 2nd parameter varies "TimesCalled" for (DP.DeleteFriend);
 
 [Fact]:
   Action: 
