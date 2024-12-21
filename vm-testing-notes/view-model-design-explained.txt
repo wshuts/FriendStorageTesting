@@ -1,0 +1,2 @@
+1. Uses "ModelWrapper" class instead of "Model" class.
+(implements NotifyPropertyChanged)
