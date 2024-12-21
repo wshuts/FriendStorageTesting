@@ -112,8 +112,8 @@ FriendEditViewModelTests:
 
   Commentary: Similar to previous test - except for verifying FDE.Publish instead of DP.DeleteFriend;
 
-[Fact]:
-  Action: 
-  Assert/Verify: 
+[ShouldDisplayCorrectMessageInDeleteDialog]:
+  Action: FEVM.DeleteCommand.Execute(null);
+  Assert/Verify: Verify arguments of MDS.ShowYesNoDialog call; i.e. precise values for "title" and "message";
 
-  Commentary:
+  Commentary: "message" is composed of FriendWrapper properties FirstName, LastName;
