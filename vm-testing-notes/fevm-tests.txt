@@ -1,5 +1,5 @@
 FriendEditViewModelTests:
-  Setup: Create FEVM; 3 dependencies; 3 mock objects passed in to constructor; DP, EA, MDS; additionally, 2 events are mocked; FSE,
+  Setup: Create FEVM; 3 dependencies; 3 mock objects passed in to constructor; DP, EA, MDS; additionally, 2 events are mocked; FSE, FDE;
   Facts: (19) See below
 
 [ShouldLoadFriend]:
