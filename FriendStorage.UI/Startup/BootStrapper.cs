@@ -5,11 +5,6 @@ using FriendStorage.UI.Dialogs;
 using FriendStorage.UI.View;
 using FriendStorage.UI.ViewModel;
 using Prism.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FriendStorage.UI.Startup
 {
