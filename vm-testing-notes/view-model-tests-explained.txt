@@ -1,8 +1,9 @@
 Generalizations:
 
 1. Setup a known state.
-2. Ask a collaborator to do something.
-3. Verify the resulting state.
+2. Specify the behavior of collaborators.
+3. Test the behavior of the VM.
+4. Verify the resulting state.
 
 Examples: ShouldLoadFriend, 
 
